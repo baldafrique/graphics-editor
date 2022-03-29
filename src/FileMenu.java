@@ -2,6 +2,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class FileMenu extends JMenu {
+	
 	private static final long serialVersionUID = 1L;
 	
 	private JMenuItem newItem;
@@ -13,6 +14,7 @@ public class FileMenu extends JMenu {
 	private JMenuItem quitItem;
 
 	public FileMenu(String s) {
+		
 		super(s);
 		
 		this.newItem = new JMenuItem("new");
@@ -35,6 +37,7 @@ public class FileMenu extends JMenu {
 		
 		this.quitItem = new JMenuItem("quit");
 		this.add(this.quitItem);
+		
 	}
 
 }

@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
+	
 	private static final long serialVersionUID = 1L;
 	
 	private MenuBar menuBar;
@@ -10,6 +11,7 @@ public class MainFrame extends JFrame {
 	private DrawingPanel drawingPanel;
 	
 	public MainFrame() {
+		
 		this.setSize(400, 600);
 		
 		BorderLayout layoutManager = new BorderLayout();

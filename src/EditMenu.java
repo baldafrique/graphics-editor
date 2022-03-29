@@ -2,6 +2,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class EditMenu extends JMenu {
+	
 	private static final long serialVersionUID = 1L;
 	
 	private JMenuItem undoItem;
@@ -13,6 +14,7 @@ public class EditMenu extends JMenu {
 	private JMenuItem ungroupItem;
 
 	public EditMenu(String s) {
+		
 		super(s);
 		
 		this.undoItem = new JMenuItem("undo");
@@ -35,6 +37,7 @@ public class EditMenu extends JMenu {
 		
 		this.ungroupItem = new JMenuItem("ungroup");
 		this.add(this.ungroupItem);
+		
 	}
 
 }

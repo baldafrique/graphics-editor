@@ -3,14 +3,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
 
 public class ToolBar extends JToolBar {
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
 	private JRadioButton rectangleTool;
 	private JRadioButton ovalTool;
 	private JRadioButton lineTool;
 	private JRadioButton polygonTool;
-
+	
 	public ToolBar() {
+		
 		ButtonGroup buttonGroup = new ButtonGroup();
 		
 		this.rectangleTool = new JRadioButton("rectangle");
@@ -28,6 +29,7 @@ public class ToolBar extends JToolBar {
 		this.polygonTool = new JRadioButton("polygon");
 		this.add(this.polygonTool);
 		buttonGroup.add(this.polygonTool);
+		
 	}
-
+	
 }
