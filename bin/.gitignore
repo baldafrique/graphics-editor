@@ -1,5 +1,8 @@
-/Button.class
+/DrawingPanel$EShapes.class
 /DrawingPanel$MouseHandler.class
+/DrawingPanel$Oval.class
+/DrawingPanel$Rectangle.class
+/DrawingPanel$Shape.class
 /DrawingPanel.class
 /EditMenu.class
 /FileMenu.class
@@ -8,10 +11,7 @@
 /MenuBar.class
 /MenuItem.class
 /ToolBar.class
-/DrawingPanel$EShapes.class
-/DrawingPanel$Oval.class
-/DrawingPanel$Rectangle.class
-/DrawingPanel$Shape.class
-/Radio.class
-/ToolBar$1.class
-/ToolBar$EShapes.class
+/frames/
+/menus/
+/global/
+/shapes/

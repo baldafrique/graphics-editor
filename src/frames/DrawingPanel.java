@@ -1,3 +1,5 @@
+package frames;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -5,33 +7,39 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
+import shapes.Line;
+import shapes.Oval;
+import shapes.Polygon;
+import shapes.Rectangle;
+import shapes.Shape;
+
 public class DrawingPanel extends JPanel {
-	
 	private static final long serialVersionUID = 1L;
 	
-	public enum EShapes {
+	public enum ETools {
 		eRectangle,
 		eOval,
 		eLine,
 		ePolygon
 	}
 	
-	EShapes eShape;
+	private ETools eSelectedTool;
 	
 	public DrawingPanel() {
-		
 		this.setBackground(Color.WHITE);
 		
 		MouseHandler mouseHandler = new MouseHandler();
 		
 		// button
 		this.addMouseListener(mouseHandler);
-		
 		// position
 		this.addMouseMotionListener(mouseHandler);
-		
 		// wheel
-//		this.addMouseWheelListener(mouseHanlder);
+		this.addMouseWheelListener(mouseHandler);
+	}
+	
+	public void setSelectedTool(ETools eSelectedTool) {
+		this.eSelectedTool = eSelectedTool;
 	}
 	
 	@Override
@@ -42,20 +50,23 @@ public class DrawingPanel extends JPanel {
 	Shape shape;
 	
 	private void prepareDrawing(int x, int y) {
+		if (this.eSelectedTool == ETools.eRectangle) {
+			this.shape = new Rectangle(x, y);
+		}
+		else if (this.eSelectedTool == ETools.eOval) {
+			this.shape = new Oval(x, y);
+		}
+		else if (this.eSelectedTool == ETools.eLine) {
+			this.shape = new Line(x, y);	
+		}
+		else if (this.eSelectedTool == ETools.ePolygon) {
+			this.shape = new Polygon(x, y);
+		}
 		
 		Graphics2D graphics2D = (Graphics2D) this.getGraphics();
 		graphics2D.setXORMode(this.getBackground());
-		eShape = EShapes.eOval;
-		
-		if (eShape == EShapes.eRectangle) {
-			this.shape = new Rectangle(x, y);
-		}
-		else if (eShape == EShapes.eOval) {
-			this.shape = new Oval(x, y);
-		}
 		
 		this.shape.draw(graphics2D);
-		
 	}
 	
 	private void keepDrawing(int x, int y) {
@@ -73,60 +84,6 @@ public class DrawingPanel extends JPanel {
 	}
 	
 	private void finishDrawing(int x, int y) {
-		
-	}
-	
-	abstract class Shape {
-		abstract public void resize(int x, int y);
-		abstract public void draw(Graphics2D graphics);
-	}
-	
-	class Rectangle extends Shape {
-		
-		private int x, y, width, height;
-		
-		public Rectangle(int x, int y) {
-			this.x = x;
-			this.y = y;
-			this.width = 0;
-			this.height = 0;
-		}
-		
-		@Override
-		public void resize(int x, int y) {
-			this.width = x - this.x;
-			this.height = y - this.y;
-		}
-		
-		@Override
-		public void draw(Graphics2D graphics) {
-			graphics.drawRect(this.x, this.y, this.width, this.height);
-		}
-		
-	}
-	
-	class Oval extends Shape {
-		
-		private int x, y, width, height;
-		
-		public Oval(int x, int y) {
-			this.x = x;
-			this.y = y;
-			this.width = 0;
-			this.height = 0;
-		}
-
-		@Override
-		public void resize(int x, int y) {
-			this.width = x - this.x;
-			this.height = y - this.y;
-		}
-
-		@Override
-		public void draw(Graphics2D graphics) {
-			graphics.drawOval(this.x, this.y, this.width, this.height);
-			
-		}
 		
 	}
 	
@@ -164,4 +121,5 @@ public class DrawingPanel extends JPanel {
 		}
 		
 	}
+
 }
