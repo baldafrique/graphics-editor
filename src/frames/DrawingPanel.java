@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
-
 import shapes.Line;
 import shapes.Oval;
 import shapes.Polygon;
@@ -35,7 +34,7 @@ public class DrawingPanel extends JPanel {
 		// position
 		this.addMouseMotionListener(mouseHandler);
 		// wheel
-		this.addMouseWheelListener(mouseHandler);
+//		this.addMouseWheelListener(mouseHandler);
 	}
 	
 	public void setSelectedTool(ETools eSelectedTool) {

@@ -1,5 +1,8 @@
 package frames;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
@@ -45,6 +48,7 @@ public class ToolBar extends JToolBar {
 	}
 	
 	private class ActionHandler implements ActionListener {
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == rectangleTool) {
@@ -59,6 +63,7 @@ public class ToolBar extends JToolBar {
 			else {
 				drawingPanel.setSelectedTool(ETools.ePolygon);
 			}
+			
 		}
 	}
 	
