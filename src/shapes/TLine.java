@@ -2,10 +2,10 @@ package shapes;
 
 import java.awt.Graphics2D;
 
-public class Line extends Shape {
+public class TLine extends TShape {
 	private int x, y, width, height;
 	
-	public Line(int x, int y) {
+	public TLine(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.width = 0;

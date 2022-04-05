@@ -10,7 +10,6 @@ import javax.swing.JToolBar;
 import frames.DrawingPanel.ETools;
 
 public class ToolBar extends JToolBar {
-	
 	private static final long serialVersionUID = 1L;
 	private JRadioButton rectangleTool;
 	private JRadioButton ovalTool;
@@ -48,7 +47,6 @@ public class ToolBar extends JToolBar {
 	}
 	
 	private class ActionHandler implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == rectangleTool) {
@@ -60,11 +58,9 @@ public class ToolBar extends JToolBar {
 			else if (e.getSource() == lineTool) {
 				drawingPanel.setSelectedTool(ETools.eLine);
 			}
-			else {
+			else if (e.getSource() == polygonTool) {
 				drawingPanel.setSelectedTool(ETools.ePolygon);
 			}
-			
 		}
 	}
-	
 }

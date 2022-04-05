@@ -26,5 +26,4 @@ public class MainFrame extends JFrame {
 		
 		this.toolBar.associate(this.drawingPanel);
 	}
-
 }
