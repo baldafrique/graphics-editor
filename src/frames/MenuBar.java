@@ -5,11 +5,15 @@ import menus.EditMenu;
 import menus.FileMenu;
 
 public class MenuBar extends JMenuBar {
+	// attributes
 	private static final long serialVersionUID = 1L;
+	
+	// components
 	private FileMenu fileMenu;
 	private EditMenu editMenu;
 	
 	public MenuBar() {
+		// components
 		this.fileMenu = new FileMenu("File");
 		this.add(this.fileMenu);
 		

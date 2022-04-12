@@ -10,14 +10,20 @@ import javax.swing.JToolBar;
 import frames.DrawingPanel.ETools;
 
 public class ToolBar extends JToolBar {
+	// attributes
 	private static final long serialVersionUID = 1L;
+	
+	// components
 	private JRadioButton rectangleTool;
 	private JRadioButton ovalTool;
 	private JRadioButton lineTool;
 	private JRadioButton polygonTool;
+	
+	// associations
 	private DrawingPanel drawingPanel;
 	
 	public ToolBar() {
+		// components
 		ButtonGroup buttonGroup = new ButtonGroup();
 		ActionHandler actionHandler = new ActionHandler();
 		
@@ -44,6 +50,7 @@ public class ToolBar extends JToolBar {
 
 	public void associate(DrawingPanel drawingPanel) {
 		this.drawingPanel = drawingPanel;
+		this.rectangleTool.doClick();
 	}
 	
 	private class ActionHandler implements ActionListener {

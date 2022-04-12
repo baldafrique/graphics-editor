@@ -1,17 +1,2 @@
-/DrawingPanel$EShapes.class
-/DrawingPanel$MouseHandler.class
-/DrawingPanel$Oval.class
-/DrawingPanel$Rectangle.class
-/DrawingPanel$Shape.class
-/DrawingPanel.class
-/EditMenu.class
-/FileMenu.class
-/Main.class
-/MainFrame.class
-/MenuBar.class
-/MenuItem.class
-/ToolBar.class
 /frames/
-/menus/
-/global/
 /shapes/

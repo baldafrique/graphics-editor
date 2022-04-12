@@ -13,6 +13,7 @@ public class TPolygon extends TShape {
 		this.xPoints = new int[MAX_POINTS];
 		this.yPoints = new int[MAX_POINTS];
 		this.addPoint(x, y);
+		this.addPoint(x, y);
 	}
 	
 	public void addPoint(int x, int y) {
@@ -23,12 +24,12 @@ public class TPolygon extends TShape {
 	
 	@Override
 	public void resize(int x, int y) {
-		this.xPoints[this.nPoints] = x;
-		this.yPoints[this.nPoints] = y;
+		this.xPoints[this.nPoints - 1] = x;
+		this.yPoints[this.nPoints - 1] = y;
 	}
 
 	@Override
 	public void draw(Graphics2D graphics) {
-		graphics.drawPolygon(xPoints, yPoints, nPoints + 1);
+		graphics.drawPolyline(xPoints, yPoints, nPoints);
 	}
 }
