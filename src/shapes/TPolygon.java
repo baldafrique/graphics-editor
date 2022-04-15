@@ -8,10 +8,13 @@ public class TPolygon extends TShape {
 	private int[] yPoints;
 	private int nPoints;
 	
-	public TPolygon(int x, int y) {
-		this.nPoints = 0;
+	public TPolygon() {
 		this.xPoints = new int[MAX_POINTS];
 		this.yPoints = new int[MAX_POINTS];
+	}
+	
+	public void setOrigin(int x, int y) {
+		this.nPoints = 0;
 		this.addPoint(x, y);
 		this.addPoint(x, y);
 	}
@@ -31,5 +34,10 @@ public class TPolygon extends TShape {
 	@Override
 	public void draw(Graphics2D graphics) {
 		graphics.drawPolyline(xPoints, yPoints, nPoints);
+	}
+
+	@Override
+	public TShape clone() {
+		return new TPolygon();
 	}
 }

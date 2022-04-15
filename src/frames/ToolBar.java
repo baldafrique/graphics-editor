@@ -7,7 +7,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
 
-import frames.DrawingPanel.ETools;
+import global.Constants.ETools;
 
 public class ToolBar extends JToolBar {
 	// attributes
@@ -28,21 +28,25 @@ public class ToolBar extends JToolBar {
 		ActionHandler actionHandler = new ActionHandler();
 		
 		this.rectangleTool = new JRadioButton("rectangle");
+		this.rectangleTool.setActionCommand(ETools.eRectangle.name());
 		this.add(this.rectangleTool);
 		this.rectangleTool.addActionListener(actionHandler);
 		buttonGroup.add(this.rectangleTool);
 		
 		this.ovalTool = new JRadioButton("oval");
+		this.ovalTool.setActionCommand(ETools.eOval.name());
 		this.add(this.ovalTool);
 		this.ovalTool.addActionListener(actionHandler);
 		buttonGroup.add(this.ovalTool);
 		
 		this.lineTool = new JRadioButton("line");
+		this.lineTool.setActionCommand(ETools.eLine.name());
 		this.add(this.lineTool);
 		this.lineTool.addActionListener(actionHandler);
 		buttonGroup.add(this.lineTool);
 		
 		this.polygonTool = new JRadioButton("polygon");
+		this.polygonTool.setActionCommand(ETools.ePolygon.name());
 		this.add(this.polygonTool);
 		this.polygonTool.addActionListener(actionHandler);
 		buttonGroup.add(this.polygonTool);
@@ -56,18 +60,7 @@ public class ToolBar extends JToolBar {
 	private class ActionHandler implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == rectangleTool) {
-				drawingPanel.setSelectedTool(ETools.eRectangle);
-			}
-			else if (e.getSource() == ovalTool) {
-				drawingPanel.setSelectedTool(ETools.eOval);
-			}
-			else if (e.getSource() == lineTool) {
-				drawingPanel.setSelectedTool(ETools.eLine);
-			}
-			else if (e.getSource() == polygonTool) {
-				drawingPanel.setSelectedTool(ETools.ePolygon);
-			}
+			drawingPanel.setSelectedTool(ETools.valueOf(e.getActionCommand()));
 		}
 	}
 }

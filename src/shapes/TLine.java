@@ -3,24 +3,29 @@ package shapes;
 import java.awt.Graphics2D;
 
 public class TLine extends TShape {
-	private int x, y, width, height;
+	private int x, y, x1, y1;
 	
-	public TLine(int x, int y) {
+	public void setOrigin(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.width = 0;
-		this.height = 0;
+		this.x1 = x;
+		this.y1 = y;
 	}
 
 	@Override
 	public void resize(int x, int y) {
-		this.width = x - this.x;
-		this.height = y - this.y;
+		this.x1 = x;
+		this.y1 = y;
 	}
 
 	@Override
 	public void draw(Graphics2D graphics) {
-		graphics.drawLine(this.x, this.y, this.width, this.height);
+		graphics.drawLine(this.x, this.y, this.x1, this.y1);
+	}
+
+	@Override
+	public TShape clone() {
+		return new TLine();
 	}
 
 }

@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 public class TOval extends TShape {
 	private int x, y, width, height;
 	
-	public TOval(int x, int y) {
+	public void setOrigin(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.width = 0;
@@ -21,5 +21,10 @@ public class TOval extends TShape {
 	@Override
 	public void draw(Graphics2D graphics) {
 		graphics.drawOval(this.x, this.y, this.width, this.height);
+	}
+
+	@Override
+	public TShape clone() {
+		return new TOval();
 	}
 }
