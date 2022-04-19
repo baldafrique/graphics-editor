@@ -13,12 +13,6 @@ public class ToolBar extends JToolBar {
 	// attributes
 	private static final long serialVersionUID = 1L;
 	
-	// components
-	private JRadioButton rectangleTool;
-	private JRadioButton ovalTool;
-	private JRadioButton lineTool;
-	private JRadioButton polygonTool;
-	
 	// associations
 	private DrawingPanel drawingPanel;
 	
@@ -27,34 +21,19 @@ public class ToolBar extends JToolBar {
 		ButtonGroup buttonGroup = new ButtonGroup();
 		ActionHandler actionHandler = new ActionHandler();
 		
-		this.rectangleTool = new JRadioButton("rectangle");
-		this.rectangleTool.setActionCommand(ETools.eRectangle.name());
-		this.add(this.rectangleTool);
-		this.rectangleTool.addActionListener(actionHandler);
-		buttonGroup.add(this.rectangleTool);
-		
-		this.ovalTool = new JRadioButton("oval");
-		this.ovalTool.setActionCommand(ETools.eOval.name());
-		this.add(this.ovalTool);
-		this.ovalTool.addActionListener(actionHandler);
-		buttonGroup.add(this.ovalTool);
-		
-		this.lineTool = new JRadioButton("line");
-		this.lineTool.setActionCommand(ETools.eLine.name());
-		this.add(this.lineTool);
-		this.lineTool.addActionListener(actionHandler);
-		buttonGroup.add(this.lineTool);
-		
-		this.polygonTool = new JRadioButton("polygon");
-		this.polygonTool.setActionCommand(ETools.ePolygon.name());
-		this.add(this.polygonTool);
-		this.polygonTool.addActionListener(actionHandler);
-		buttonGroup.add(this.polygonTool);
+		for (ETools eTool : ETools.values()) {
+			JRadioButton toolButton = new JRadioButton(eTool.getLabel());
+			toolButton.setActionCommand(ETools.eRectangle.name());
+			toolButton.addActionListener(actionHandler);
+			this.add(toolButton);
+			buttonGroup.add(toolButton);
+		}
 	}
 
 	public void associate(DrawingPanel drawingPanel) {
 		this.drawingPanel = drawingPanel;
-		this.rectangleTool.doClick();
+		JRadioButton defaultButton = (JRadioButton) this.getComponent(ETools.eRectangle.ordinal());
+		defaultButton.doClick();
 	}
 	
 	private class ActionHandler implements ActionListener {

@@ -1,6 +1,7 @@
 package frames;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -87,6 +88,23 @@ public class DrawingPanel extends JPanel {
 		this.shapes.add(this.currentShape);
 	}
 	
+	private boolean onShape(int x, int y) {
+		for (TShape shape : this.shapes) {
+			if (shape.contains(x, y)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private void changeCursor(int x, int y) {
+		Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+		if (this.onShape(x, y)) {
+			cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
+		}
+		this.setCursor(cursor);
+	}
+	
 	class MouseHandler implements MouseInputListener, MouseWheelListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -140,6 +158,9 @@ public class DrawingPanel extends JPanel {
 		public void mouseDragged(MouseEvent e) {
 			if (eDrawingState == EDrawingState.e2PointDrawing) {
 				keepDrawing(e.getX(), e.getY());
+			}
+			else if (eDrawingState == EDrawingState.eIdle) {
+				changeCursor(e.getX(), e.getY());
 			}
 		}
 
