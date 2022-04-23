@@ -48,6 +48,16 @@ public class DrawingPanel extends JPanel {
 		this.addMouseWheelListener(mouseHandler);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void setShapes(Object shapes) {
+		this.shapes = (Vector<TShape>) shapes;
+		this.repaint();
+	}
+	
+	public Object getShapes() {
+		return this.shapes;
+	}
+	
 	public void setSelectedTool(ETools selectedTool) {
 		this.selectedTool = selectedTool;
 	}

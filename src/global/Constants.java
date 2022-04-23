@@ -28,4 +28,23 @@ public class Constants {
 			return this.tool.clone();
 		}
 	}
+	
+	public enum EFileMenu {
+		eNew("새로만들기"),
+		eOpen("열기"),
+		eSave("저장하기"),
+		eSaveAs("다른이름으로"),
+		eClose("닫기"),
+		ePrint("프린트"),
+		eQuit("종료");
+		
+		private String label;
+		private EFileMenu(String label) {
+			this.label = label;
+		}
+		
+		public String getLabel() {
+			return this.label;
+		}
+	}
 }

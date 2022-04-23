@@ -31,6 +31,7 @@ public class MainFrame extends JFrame {
 		this.add(this.drawingPanel, BorderLayout.CENTER);
 		
 		// association
+		this.menuBar.associate(this.drawingPanel);
 		this.toolBar.associate(this.drawingPanel);
 	}
 }

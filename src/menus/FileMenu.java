@@ -1,44 +1,73 @@
 package menus;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import frames.DrawingPanel;
+import global.Constants.EFileMenu;
+
 public class FileMenu extends JMenu {
-	
 	private static final long serialVersionUID = 1L;
+	private DrawingPanel drawingPanel;
 	
-	private JMenuItem newItem;
-	private JMenuItem openItem;
-	private JMenuItem closeItem;
-	private JMenuItem saveItem;
-	private JMenuItem saveAsItem;
-	private JMenuItem printItem;
-	private JMenuItem quitItem;
-
-	public FileMenu(String s) {
+	public FileMenu(String title) {
+		super(title);
 		
-		super(s);
+		ActionHandler actionHandler = new ActionHandler();
 		
-		this.newItem = new JMenuItem("new");
-		this.add(this.newItem);
-		
-		this.openItem = new JMenuItem("open");
-		this.add(this.openItem);
-		
-		this.closeItem = new JMenuItem("close");
-		this.add(this.closeItem);
-		
-		this.saveItem = new JMenuItem("save");
-		this.add(this.saveItem);
-		
-		this.saveAsItem = new JMenuItem("saveAs");
-		this.add(this.saveAsItem);
-		
-		this.printItem = new JMenuItem("print");
-		this.add(this.printItem);
-		
-		this.quitItem = new JMenuItem("quit");
-		this.add(this.quitItem);
-		
+		for (EFileMenu eMenuItem : EFileMenu.values()) {
+			JMenuItem menuItem = new JMenuItem(eMenuItem.getLabel());
+			menuItem.addActionListener(actionHandler);
+			menuItem.setActionCommand(eMenuItem.name());
+			this.add(menuItem);
+		}
 	}
-
+	
+	public void associate(DrawingPanel drawingPanel) {
+		this.drawingPanel = drawingPanel;
+	}
+	
+	private void store() {
+		try {
+			FileOutputStream fileOutputStream;
+			fileOutputStream = new FileOutputStream("test");
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(this.drawingPanel.getShapes());
+			objectOutputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void load() {
+		try {
+			FileInputStream fileInputStream;
+			fileInputStream = new FileInputStream("test");
+			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+			Object object = objectInputStream.readObject();
+			this.drawingPanel.setShapes(object);
+			objectInputStream.close();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	class ActionHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand().equals(EFileMenu.eOpen.name())) {
+				load();
+			}
+			else if (e.getActionCommand().equals(EFileMenu.eSave.name())) {
+				store();
+			}
+		}
+	}
 }
