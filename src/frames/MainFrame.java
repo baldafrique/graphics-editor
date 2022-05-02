@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
+	
 	// attributes
 	private static final long serialVersionUID = 1L;
 	
@@ -34,4 +35,5 @@ public class MainFrame extends JFrame {
 		this.menuBar.associate(this.drawingPanel);
 		this.toolBar.associate(this.drawingPanel);
 	}
+	
 }

@@ -1,11 +1,18 @@
 package shapes;
 
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class TRectangle extends TShape {
+	
+	private static final long serialVersionUID = 1L;
+
 	public TRectangle() {
 		this.shape = new Rectangle();
+	}
+	
+	@Override
+	public TShape clone() {
+		return new TRectangle();
 	}
 	
 	public void setOrigin(int x, int y) {
@@ -19,17 +26,4 @@ public class TRectangle extends TShape {
 		rectangle.setSize(x - rectangle.x, y - rectangle.y);
 	}
 	
-	@Override
-	public void draw(Graphics2D graphics) {
-		graphics.draw(this.shape);
-	}
-	
-	public boolean contains(int x, int y) {
-		return this.shape.contains(x, y);
-	}
-
-	@Override
-	public TShape clone() {
-		return new TRectangle();
-	}
 }

@@ -5,6 +5,7 @@ import menus.EditMenu;
 import menus.FileMenu;
 
 public class MenuBar extends JMenuBar {
+	
 	// attributes
 	private static final long serialVersionUID = 1L;
 	
@@ -26,4 +27,5 @@ public class MenuBar extends JMenuBar {
 		this.drawingPanel = drawingPanel;
 		this.fileMenu.associate(this.drawingPanel);
 	}
+	
 }

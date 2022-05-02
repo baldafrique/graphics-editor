@@ -16,6 +16,7 @@ import global.Constants.ETools;
 import shapes.TShape;
 
 public class DrawingPanel extends JPanel {
+	
 	// attribute
 	private static final long serialVersionUID = 1L;
 	
@@ -40,10 +41,13 @@ public class DrawingPanel extends JPanel {
 		// components
 		this.shapes = new Vector<>();
 		MouseHandler mouseHandler = new MouseHandler();
+		
 		// button
 		this.addMouseListener(mouseHandler);
+		
 		// position
 		this.addMouseMotionListener(mouseHandler);
+		
 		// wheel
 		this.addMouseWheelListener(mouseHandler);
 	}
@@ -63,10 +67,10 @@ public class DrawingPanel extends JPanel {
 	}
 	
 	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void paint(Graphics graphics) {
+		super.paint(graphics);
 		for (TShape shape : this.shapes) {
-			shape.draw((Graphics2D) g);
+			shape.draw((Graphics2D) graphics);
 		}
 	}
 	

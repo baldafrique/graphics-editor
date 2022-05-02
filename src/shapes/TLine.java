@@ -1,31 +1,29 @@
 package shapes;
 
-import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 
 public class TLine extends TShape {
-	private int x, y, x1, y1;
+	
+	private static final long serialVersionUID = 1L;
+	
+	public TLine() {
+		this.shape = new Line2D.Double();
+	}
 	
 	public void setOrigin(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.x1 = x;
-		this.y1 = y;
+		Line2D line = (Line2D) this.shape;
+		line.setLine(x, y, x, y);
 	}
 
 	@Override
 	public void resize(int x, int y) {
-		this.x1 = x;
-		this.y1 = y;
-	}
-
-	@Override
-	public void draw(Graphics2D graphics) {
-		graphics.drawLine(this.x, this.y, this.x1, this.y1);
+		Line2D line = (Line2D) this.shape;
+		line.setLine(line.getX1(), line.getY1(), x, y);
 	}
 
 	@Override
 	public TShape clone() {
 		return new TLine();
 	}
-
+	
 }

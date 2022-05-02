@@ -10,6 +10,7 @@ import javax.swing.JToolBar;
 import global.Constants.ETools;
 
 public class ToolBar extends JToolBar {
+	
 	// attributes
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +24,7 @@ public class ToolBar extends JToolBar {
 		
 		for (ETools eTool : ETools.values()) {
 			JRadioButton toolButton = new JRadioButton(eTool.getLabel());
-			toolButton.setActionCommand(ETools.eRectangle.name());
+			toolButton.setActionCommand(eTool.name());
 			toolButton.addActionListener(actionHandler);
 			this.add(toolButton);
 			buttonGroup.add(toolButton);
@@ -42,4 +43,5 @@ public class ToolBar extends JToolBar {
 			drawingPanel.setSelectedTool(ETools.valueOf(e.getActionCommand()));
 		}
 	}
+	
 }

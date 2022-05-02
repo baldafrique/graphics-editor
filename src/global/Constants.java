@@ -7,6 +7,7 @@ import shapes.TRectangle;
 import shapes.TShape;
 
 public class Constants {
+	
 	public enum ETools {
 		eRectangle("네모", new TRectangle()),
 		eOval("동그라미", new TOval()),
@@ -47,4 +48,5 @@ public class Constants {
 			return this.label;
 		}
 	}
+	
 }
