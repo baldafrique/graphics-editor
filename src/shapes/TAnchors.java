@@ -31,12 +31,12 @@ public class TAnchors {
 	}
 	
 	public void draw(Graphics2D graphics2D, Rectangle boundingRectangle) {
-		int x = boundingRectangle.x;
-		int y = boundingRectangle.y;
-		int w = boundingRectangle.width;
-		int h = boundingRectangle.height;
-		
 		for (EAnchors eAnchor : EAnchors.values()) {
+			int x = boundingRectangle.x - WIDTH / 2;
+			int y = boundingRectangle.y - HEIGHT / 2;
+			int w = boundingRectangle.width;
+			int h = boundingRectangle.height;
+			
 			switch (eAnchor) {
 			case eNW:
 				break;
@@ -66,12 +66,17 @@ public class TAnchors {
 				break;
 			case eRR:
 				x = x + w / 2;
-				y = y + h / 2;
+				y = y - h / 2;
 				break;
 			default:
 				break;
 			}
+			
 			this.anchors[eAnchor.ordinal()].setFrame(x, y, WIDTH, HEIGHT);
+//			Color foreground = graphics2D.getColor();
+//			graphics2D.setColor(graphics2D.getBackground());
+//			graphics2D.fill(this.anchors[eAnchor.ordinal()]);
+//			graphics2D.setColor(foreground);
 			graphics2D.draw(this.anchors[eAnchor.ordinal()]);
 		}
 	}
