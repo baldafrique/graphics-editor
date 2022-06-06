@@ -37,8 +37,7 @@ public class FileMenu extends JMenu {
 	
 	private void store() {
 		try {
-			FileOutputStream fileOutputStream;
-			fileOutputStream = new FileOutputStream("test");
+			FileOutputStream fileOutputStream = new FileOutputStream("test");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this.drawingPanel.getShapes());
 			objectOutputStream.close();
@@ -49,8 +48,7 @@ public class FileMenu extends JMenu {
 	
 	private void load() {
 		try {
-			FileInputStream fileInputStream;
-			fileInputStream = new FileInputStream("test");
+			FileInputStream fileInputStream = new FileInputStream("test");
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			Object object = objectInputStream.readObject();
 			this.drawingPanel.setShapes(object);

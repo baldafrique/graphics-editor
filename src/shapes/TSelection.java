@@ -2,17 +2,17 @@ package shapes;
 
 import java.awt.Rectangle;
 
-public class TRectangle extends TShape {
+public class TSelection extends TShape {
 	
 	private static final long serialVersionUID = 1L;
 
-	public TRectangle() {
+	public TSelection() {
 		this.shape = new Rectangle();
 	}
 	
 	@Override
 	public TShape clone() {
-		return new TRectangle();
+		return new TSelection();
 	}
 	
 	public void prepareDrawing(int x, int y) {

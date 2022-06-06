@@ -1,7 +1,9 @@
 package shapes;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 
 import shapes.TAnchors.EAnchors;
@@ -10,66 +12,76 @@ abstract public class TShape implements Serializable {
 	
 	// attributes
 	private static final long serialVersionUID = 1L;
+	private boolean bSelected;
 
 	// components
 	public Shape shape;
-	public TAnchors anchors;
-	
-	// working
-	private boolean bSelected;
-	private EAnchors eSelectedAnchor;
-	
-	
-	// constructors
-	public TShape() {
-		this.anchors = new TAnchors();
-		this.bSelected = false;
-	}
+	private AffineTransform affineTransform;
+	private TAnchors anchors;
+
 	
 	// getters and setters
-	public void setSelected(boolean bSelected) {
-		this.bSelected = bSelected;
+	public EAnchors getSelectedAnchor() {
+		return this.anchors.getESelectedAnchor();
 	}
 	
 	public boolean isSelected() {
 		return this.bSelected;
 	}
 	
+	public void setSelected(boolean bSelected) {
+		this.bSelected = bSelected;
+	}
 	
-	public EAnchors getSelectedAnchor() {
-		return eSelectedAnchor;
+	public AffineTransform getAffineTransform() {
+		return this.affineTransform;
 	}
 
-	public void seteSelectedAnchor(EAnchors eAnchor) {
-		this.eSelectedAnchor = eAnchor;
+	public TAnchors getAnchors() {
+		return this.anchors;
 	}
+	
+	public Rectangle getBounds() {
+		return this.shape.getBounds();
+	}
+	
+	// constructors
+		public TShape() {
+			this.bSelected = false;
+			this.affineTransform = new AffineTransform();
+			this.affineTransform.setToIdentity();
+			this.anchors = new TAnchors();
+		}
 	
 	public abstract TShape clone();
 
 	// methods
-	public abstract void setOrigin(int x, int y);
-	public abstract void resize(int x, int y);
+	public abstract void prepareDrawing(int x, int y);
+	public abstract void keepDrawing(int x, int y);
 	public void addPoint(int x, int y) {}
 
 	public boolean contains(int x, int y) {
+		Shape transformedShape = this.affineTransform.createTransformedShape(this.shape);
 		if (this.bSelected) {
-			this.eSelectedAnchor = this.anchors.contains(x, y);
-			if (this.eSelectedAnchor != null) {
+			if (this.anchors.contains(x,  y)) {
 				return true;
 			}
 		}
 		
-		if(this.shape.contains(x, y)) {
-			this.eSelectedAnchor = EAnchors.eMove;
+		if(transformedShape.contains(x, y)) {
+			this.anchors.setESelectedAnchor(EAnchors.eMove);
+			return true;
 		}
 		
 		return false;
 	}
 	
 	public void draw(Graphics2D graphics2D) {
-		graphics2D.draw(shape);
+		Shape transformedShape = this.affineTransform.createTransformedShape(this.shape);
+		
+		graphics2D.draw(transformedShape);
 		if (this.bSelected) {
-			this.anchors.draw(graphics2D, this.shape.getBounds());
+			this.anchors.draw(graphics2D, transformedShape.getBounds());
 		}
 	}
 
